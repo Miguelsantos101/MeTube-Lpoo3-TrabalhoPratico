@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"editor.fontSize": 18,
+		"editor.fontFamily": "JetBrains Mono",
+		"workbench.colorCustomizations": {
+			"terminal.background": "#000000",
+		},
+		"code-runner.runInTerminal": true,
+		"code-runner.executorMap": {
+			"java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+		},
+		"terminal.integrated.profiles.windows": {
+			"PowerShell": {
+				"source": "PowerShell",
+				"icon": "terminal-powershell",
+				"color": "terminal.ansiGreen"
+			},
+			"Git Bash": {
+				"source": "Git Bash",
+				"icon": "terminal-bash", //what icon to use
+				"color": "terminal.ansiGreen" //color of icon
+			},
+		},
+		
+	}
+}
