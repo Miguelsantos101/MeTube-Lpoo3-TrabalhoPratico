@@ -1,23 +1,17 @@
-import java.util.ArrayList;
-
 public class _5Video {
     private static int id_videos = 0;
     private int id_video;
     private String titulo_video;
     private String dt_lancamento;
     private int qtd_likes;
-
     private _4Canal canal_dono;
-    private ArrayList<_6Comentario> listaComentarios;
 
     public _5Video(String titulo_video, String dt_lancamento, int qtd_likes, _4Canal canal_dono) {
         setId_video(++id_videos);
         setTitulo_video(titulo_video);
         setDt_lancamento(dt_lancamento);
         setQtd_likes(qtd_likes);
-
         setCanal_dono(canal_dono);
-        setListaComentarios(listaComentarios = new ArrayList<_6Comentario>());
     }
 
 
@@ -70,20 +64,6 @@ public class _5Video {
 
     public _4Canal getCanal_dono() {
         return canal_dono;
-    }
-    //#endregion
-
-
-
-
-
-    //#region listaComentarios
-    public void setListaComentarios(ArrayList<_6Comentario> listaComentarios) {
-        this.listaComentarios = listaComentarios;
-    }
-
-    public ArrayList<_6Comentario> getListaComentarios() {
-        return listaComentarios;
     }
     //#endregion
 

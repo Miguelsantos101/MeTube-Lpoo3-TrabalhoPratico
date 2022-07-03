@@ -129,7 +129,7 @@ public class TelasVideo extends JPanel {
 
         // Título
         labelTitulo.setText("Criar Vídeo");
-        labelTitulo.setFont(new Font("Inter", Font.BOLD, 36));
+        labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
         labelTitulo.setAlignmentX(CENTER_ALIGNMENT);
 
         // Formulários
@@ -187,7 +187,7 @@ public class TelasVideo extends JPanel {
 
         // Título
         labelTitulo.setText("Lista de Vídeos");
-        labelTitulo.setFont(new Font("Inter", Font.BOLD, 36));
+        labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Tabela
@@ -210,7 +210,7 @@ public class TelasVideo extends JPanel {
 
         // Título
         labelTitulo.setText("Editar Vídeo");
-        labelTitulo.setFont(new Font("Inter", Font.BOLD, 36));
+        labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Formulários
@@ -280,7 +280,7 @@ public class TelasVideo extends JPanel {
 
         // Título
         labelTitulo.setText("Apagar Vídeo");
-        labelTitulo.setFont(new Font("Inter", Font.BOLD, 36));
+        labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Tabela
@@ -334,7 +334,10 @@ public class TelasVideo extends JPanel {
                 }
                 else{
                     try {
-                        _2MenuPrincipal.listaVideoMenu.add(new _5Video(textFieldTituloVideo.getText(), textFieldDt_Lancamento.getText(), Integer.parseInt(textFieldQtd_likes.getText()), _2MenuPrincipal.listaCanalMenu.get(cbCanalDono.getSelectedIndex())));
+                        _2MenuPrincipal.listaVideoMenu.add(new _5Video( textFieldTituloVideo.getText(), 
+                                                                        textFieldDt_Lancamento.getText(), 
+                                                                        Integer.parseInt(textFieldQtd_likes.getText()), 
+                                                                        _2MenuPrincipal.listaCanalMenu.get(cbCanalDono.getSelectedIndex())));
                         _2MenuPrincipal.painelPrincipal.removeAll();
                         _2MenuPrincipal.painelPrincipal.revalidate();
                         _2MenuPrincipal.painelPrincipal.repaint();

@@ -110,12 +110,6 @@ public class _2MenuPrincipal extends JFrame{
         organizarEventos();
 
         finalizar();
-        
-        painelPrincipal.removeAll();
-        painelPrincipal.add(telasUsuario.telaEditarUsuario());
-        this.revalidate();
-        this.repaint();
-        status.setText("Editando usuário");
     }
 
 
@@ -305,7 +299,7 @@ public class _2MenuPrincipal extends JFrame{
                 painelPrincipal.add(telasVideo.telaCriarVideo());
                 this.revalidate();
                 this.repaint();
-                status.setText("Criando novo video");
+                status.setText("Criando novo vídeo");
             }
         );
 
@@ -325,7 +319,7 @@ public class _2MenuPrincipal extends JFrame{
                 painelPrincipal.add(telasVideo.telaEditarVideo());
                 this.revalidate();
                 this.repaint();
-                status.setText("Editando video");
+                status.setText("Editando vídeo");
             }
         );
 
@@ -335,13 +329,51 @@ public class _2MenuPrincipal extends JFrame{
                 painelPrincipal.add(telasVideo.telaApagarVideo());
                 this.revalidate();
                 this.repaint();
-                status.setText("Apagando video");
+                status.setText("Apagando vídeo");
             }
         );
     }
 
     private void eventosMenuComentario() {
+        menuItemCriaComentario.addActionListener(
+            (event) -> {
+                painelPrincipal.removeAll();
+                painelPrincipal.add(telasComentario.telaCriarComentario());
+                this.revalidate();
+                this.repaint();
+                status.setText("Criando novo comentário");
+            }
+        );
 
+        menuItemListaComentario.addActionListener(
+            (event) -> {
+                painelPrincipal.removeAll();
+                painelPrincipal.add(telasComentario.telaListarComentario());
+                this.revalidate();
+                this.repaint();
+                status.setText("Listando comentários");
+            }
+        );
+
+        menuItemEditaComentario.addActionListener(
+            (event) -> {
+                painelPrincipal.removeAll();
+                painelPrincipal.add(telasComentario.telaEditarComentario());
+                this.revalidate();
+                this.repaint();
+                status.setText("Editando comentário");
+            }
+        );
+
+        menuItemApagaComentario.addActionListener(
+            (event) -> {
+                painelPrincipal.removeAll();
+                painelPrincipal.add(telasComentario.telaApagarComentario());
+                this.revalidate();
+                this.repaint();
+                status.setText("Apagando comentário");
+            }
+        );
     }
 
     private void eventosMenuAssinatura() {

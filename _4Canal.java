@@ -1,23 +1,15 @@
-import java.util.ArrayList;
-
 public class _4Canal {
     private static int id_canais = 0;
     private int id_canal;
     private String nome_canal;
     private String dt_criacao;
-
     private _3Usuario usuario_dono;
-    private ArrayList<_5Video> listaVideos;
-    private ArrayList<_7Assinatura> listaAssinaturas;
     
     public _4Canal(String nome_canal, String dt_criacao, _3Usuario usuario_dono) {
         setId_canal(++id_canais);
         setNome_canal(nome_canal);
         setDt_criacao(dt_criacao);
-
         setUsuario_dono(usuario_dono);
-        setListaVideos(listaVideos = new ArrayList<_5Video>());
-        setListaAssinaturas(listaAssinaturas = new ArrayList<_7Assinatura>());
     }
 
     
@@ -60,35 +52,6 @@ public class _4Canal {
 
     public _3Usuario getUsuario_dono() {
         return usuario_dono;
-    }
-    //#endregion
-
-
-
-
-
-    //#region listaVideos
-    public void setListaVideos(ArrayList<_5Video> listaVideos) {
-        this.listaVideos = listaVideos;
-    }
-
-    public ArrayList<_5Video> getListaVideos() {
-        return listaVideos;
-    }
-
-    public void addVideo(_5Video video) {
-        //video.setCanal_dono(this);
-        listaVideos.add(video);
-    }
-    //#endregion
-
-    //#region listaAssinaturas
-    public void setListaAssinaturas(ArrayList<_7Assinatura> listaAssinaturas) {
-        this.listaAssinaturas = listaAssinaturas;
-    }
-
-    public ArrayList<_7Assinatura> getListaAssinaturas() {
-        return listaAssinaturas;
     }
     //#endregion
 

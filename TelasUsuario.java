@@ -119,7 +119,7 @@ public class TelasUsuario extends JPanel{
 
         // Título
         labelTitulo.setText("Criar usuário");
-        labelTitulo.setFont(new Font("Inter", Font.BOLD, 36));
+        labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
         labelTitulo.setAlignmentX(CENTER_ALIGNMENT);
 
         // Formulários
@@ -161,7 +161,7 @@ public class TelasUsuario extends JPanel{
 
         // Título
         labelTitulo.setText("Lista de usuários");
-        labelTitulo.setFont(new Font("Inter", Font.BOLD, 36));
+        labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Tabela
@@ -184,7 +184,7 @@ public class TelasUsuario extends JPanel{
 
         // Título
         labelTitulo.setText("Editar usuários");
-        labelTitulo.setFont(new Font("Inter", Font.BOLD, 36));
+        labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Formulários
@@ -243,7 +243,7 @@ public class TelasUsuario extends JPanel{
 
         // Título
         labelTitulo.setText("Apagar usuários");
-        labelTitulo.setFont(new Font("Inter", Font.BOLD, 36));
+        labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Tabela
@@ -284,7 +284,8 @@ public class TelasUsuario extends JPanel{
         btnCriar.addActionListener(
             (event) -> {
                 try {
-                    _2MenuPrincipal.listaUsuarioMenu.add(new _3Usuario(textFieldNome.getText(), textFieldDt_Nasc.getText()));
+                    _2MenuPrincipal.listaUsuarioMenu.add(new _3Usuario( textFieldNome.getText(), 
+                                                                        textFieldDt_Nasc.getText()));
                     _2MenuPrincipal.painelPrincipal.removeAll();
                     _2MenuPrincipal.painelPrincipal.revalidate();
                     _2MenuPrincipal.painelPrincipal.repaint();
@@ -311,7 +312,7 @@ public class TelasUsuario extends JPanel{
                         
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Informações inválidas", "Atenção", JOptionPane.INFORMATION_MESSAGE);
-                        
+
                     }
                 }
                 else {

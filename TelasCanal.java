@@ -125,7 +125,7 @@ public class TelasCanal extends JPanel {
 
         // Título
         labelTitulo.setText("Criar Canal");
-        labelTitulo.setFont(new Font("Inter", Font.BOLD, 36));
+        labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
         labelTitulo.setAlignmentX(CENTER_ALIGNMENT);
 
         // Formulários
@@ -174,7 +174,7 @@ public class TelasCanal extends JPanel {
 
         // Título
         labelTitulo.setText("Lista de Canais");
-        labelTitulo.setFont(new Font("Inter", Font.BOLD, 36));
+        labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Tabela
@@ -197,7 +197,7 @@ public class TelasCanal extends JPanel {
 
         // Título
         labelTitulo.setText("Editar Canal");
-        labelTitulo.setFont(new Font("Inter", Font.BOLD, 36));
+        labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Formulários
@@ -262,7 +262,7 @@ public class TelasCanal extends JPanel {
 
         // Título
         labelTitulo.setText("Apagar Canal");
-        labelTitulo.setFont(new Font("Inter", Font.BOLD, 36));
+        labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
         labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Tabela
@@ -317,7 +317,9 @@ public class TelasCanal extends JPanel {
                 }
                 else{
                     try {
-                        _2MenuPrincipal.listaCanalMenu.add(new _4Canal(textFieldNomeCanal.getText(), textFieldDt_Criacao.getText(), _2MenuPrincipal.listaUsuarioMenu.get(cbUsuarioDono.getSelectedIndex())));
+                        _2MenuPrincipal.listaCanalMenu.add(new _4Canal( textFieldNomeCanal.getText(), 
+                                                                        textFieldDt_Criacao.getText(), 
+                                                                        _2MenuPrincipal.listaUsuarioMenu.get(cbUsuarioDono.getSelectedIndex())));
                         _2MenuPrincipal.painelPrincipal.removeAll();
                         _2MenuPrincipal.painelPrincipal.revalidate();
                         _2MenuPrincipal.painelPrincipal.repaint();
