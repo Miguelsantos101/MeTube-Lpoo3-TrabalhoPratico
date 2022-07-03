@@ -1,12 +1,12 @@
-public class _6Comentario {
+public class Comentario {
     private static int id_comentarios = 0;
     private int id_comentario;
     private String texto_comentario;
     private int qtd_likes;
-    private _3Usuario usuario_dono;
-    private _5Video video_dono;
+    private Usuario usuario_dono;
+    private Video video_dono;
 
-    public _6Comentario(String texto_comentario, int qtd_likes, _3Usuario usuario_dono, _5Video video_dono) {
+    public Comentario(String texto_comentario, int qtd_likes, Usuario usuario_dono, Video video_dono) {
         setId_comentario(++id_comentarios);
         setTexto_comentario(texto_comentario);
         setQtd_likes(qtd_likes);
@@ -48,21 +48,21 @@ public class _6Comentario {
     //#endregion
 
     //#region usuario_dono
-    public void setUsuario_dono(_3Usuario usuario_dono) {
+    public void setUsuario_dono(Usuario usuario_dono) {
         this.usuario_dono = usuario_dono;
     }
 
-    public _3Usuario getUsuario_dono() {
+    public Usuario getUsuario_dono() {
         return usuario_dono;
     }
     //#endregion
 
     //#region video_dono
-    public void setVideo_dono(_5Video video_dono) {
+    public void setVideo_dono(Video video_dono) {
         this.video_dono = video_dono;
     }
 
-    public _5Video getVideo_dono() {
+    public Video getVideo_dono() {
         return video_dono;
     }
     //#endregion

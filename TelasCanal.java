@@ -21,14 +21,16 @@ public class TelasCanal extends JPanel {
             labelTitulo,
             labelNomeCanal,
             labelDt_Criacao,
-            labelCbUsuarioDono;
+            labelCbUsuarioDono,
+            labelAssinatura;
             
             JTextField 
             textFieldNomeCanal,
             textFieldDt_Criacao;
 
             JComboBox<String>
-            cbUsuarioDono;
+            cbUsuarioDono,
+            cbAssinatura;
 
             JButton 
             btnCriar;
@@ -83,11 +85,13 @@ public class TelasCanal extends JPanel {
         labelNomeCanal = new JLabel();
         labelDt_Criacao = new JLabel();
         labelCbUsuarioDono = new JLabel();
+        labelAssinatura = new JLabel();
 
         textFieldNomeCanal = new JTextField();
         textFieldDt_Criacao = new JTextField();
 
         cbUsuarioDono = new JComboBox<String>();
+        cbAssinatura = new JComboBox<String>();
 
         btnCriar = new JButton();
         //#endregion
@@ -126,36 +130,37 @@ public class TelasCanal extends JPanel {
         // Título
         labelTitulo.setText("Criar Canal");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setAlignmentX(CENTER_ALIGNMENT);
+        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Formulários
         labelNomeCanal.setText("Digite o nome do canal:");
-        labelNomeCanal.setAlignmentX(CENTER_ALIGNMENT);
+
 
         textFieldNomeCanal.setColumns(20);
         textFieldNomeCanal.setText(null);
-        textFieldNomeCanal.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         labelDt_Criacao.setText("Digite a data de criação do canal:");
-        labelDt_Criacao.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         textFieldDt_Criacao.setColumns(20);
         textFieldDt_Criacao.setText(null);
-        textFieldDt_Criacao.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         labelCbUsuarioDono.setText("Escolha o dono do canal:");
-        labelCbUsuarioDono.setAlignmentX(CENTER_ALIGNMENT);
 
         carregaComboBoxUsuarioDono();
+
+        labelAssinatura.setText("Escolha uma assinatura: (opcional)");
+
+        carregaComboBoxAssinatura();
 
         // Botões
         btnCriar.setText("Criar novo Canal");
         btnCriar.setBackground(Color.GREEN);
-        btnCriar.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         // Adicionando componentes
         painelCriaCanal.setLayout(new BoxLayout(painelCriaCanal, BoxLayout.Y_AXIS));
-        painelCriaCanal.setSize(500, 500);
         painelCriaCanal.add(labelTitulo);
         painelCriaCanal.add(labelNomeCanal);
         painelCriaCanal.add(textFieldNomeCanal);
@@ -163,6 +168,8 @@ public class TelasCanal extends JPanel {
         painelCriaCanal.add(textFieldDt_Criacao);
         painelCriaCanal.add(labelCbUsuarioDono);
         painelCriaCanal.add(cbUsuarioDono);
+        painelCriaCanal.add(labelAssinatura);
+        painelCriaCanal.add(cbAssinatura);
         painelCriaCanal.add(btnCriar);
 
         return painelCriaCanal;
@@ -175,7 +182,7 @@ public class TelasCanal extends JPanel {
         // Título
         labelTitulo.setText("Lista de Canais");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        
 
         // Tabela
         carregaTabela();
@@ -198,7 +205,7 @@ public class TelasCanal extends JPanel {
         // Título
         labelTitulo.setText("Editar Canal");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        
 
         // Formulários
         labelId.setText("ID do canal");
@@ -218,8 +225,12 @@ public class TelasCanal extends JPanel {
         textFieldDt_Criacao.setText(null);
 
         labelCbUsuarioDono.setText("Usuário dono");
-
+        
         carregaComboBoxUsuarioDono();
+
+        labelAssinatura.setText("Assinatura");
+
+        carregaComboBoxAssinatura();
 
         // Tabela
         carregaTabela();
@@ -246,12 +257,14 @@ public class TelasCanal extends JPanel {
         painelDeEdicao.add(textFieldDt_Criacao);
         painelDeEdicao.add(labelCbUsuarioDono);
         painelDeEdicao.add(cbUsuarioDono);
+        painelDeEdicao.add(labelAssinatura);
+        painelDeEdicao.add(cbAssinatura);
         painelDeEdicao.add(caixa);
         painelEditaCanal.add(painelDeEdicao, BorderLayout.WEST);
         painelEditaCanal.add(scrollPane, BorderLayout.CENTER);
         painelBotoes.add(btnSalvar);
         painelBotoes.add(btnEditar);
-        painelEditaCanal.add(painelBotoes, BorderLayout.SOUTH);
+        painelEditaCanal.add(painelBotoes, BorderLayout.EAST);
 
         return painelEditaCanal;
     }
@@ -263,7 +276,7 @@ public class TelasCanal extends JPanel {
         // Título
         labelTitulo.setText("Apagar Canal");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        
 
         // Tabela
         carregaTabela();
@@ -285,26 +298,40 @@ public class TelasCanal extends JPanel {
     }
 
     public void carregaTabela() {
-        DefaultTableModel modelo = new DefaultTableModel( new Object[]{"ID do canal", "Nome", "Data de Criação", "Dono do canal"}, 0);
+        DefaultTableModel modelo = new DefaultTableModel( new Object[]{"ID do canal", "Nome", "Data de Criação", "Dono do canal", "Assinatura"}, 0);
         
-        for (int i = 0; i < _2MenuPrincipal.listaCanalMenu.size(); i++) {
-            Object linha[] = new Object[]{  _2MenuPrincipal.listaCanalMenu.get(i).getId_canal(),
-                                            _2MenuPrincipal.listaCanalMenu.get(i).getNome_canal(),
-                                            _2MenuPrincipal.listaCanalMenu.get(i).getDt_criacao(),
-                                            _2MenuPrincipal.listaCanalMenu.get(i).getUsuario_dono().getNome()};
-            modelo.addRow(linha);
+        try {
+            for (int i = 0; i < MenuPrincipal.listaCanalMenu.size(); i++) {
+                Object linha[] = new Object[]{  MenuPrincipal.listaCanalMenu.get(i).getId_canal(),
+                                                MenuPrincipal.listaCanalMenu.get(i).getNome_canal(),
+                                                MenuPrincipal.listaCanalMenu.get(i).getDt_criacao(),
+                                                MenuPrincipal.listaCanalMenu.get(i).getUsuario_dono().getNome(),
+                                                MenuPrincipal.listaCanalMenu.get(i).getAssinatura().getNome_assinatura()};
+                modelo.addRow(linha);
+            }
+            tbl.setModel(modelo);
+            tbl.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            
+        } catch (Exception e) {
+            
         }
-        tbl.setModel(modelo);
-        tbl.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        carregaComboBoxUsuarioDono();
     }
 
     public void carregaComboBoxUsuarioDono() {
         cbUsuarioDono.removeAllItems();
 
-        for (int i = 0; i < _2MenuPrincipal.listaUsuarioMenu.size(); i++) {
-            cbUsuarioDono.addItem(_2MenuPrincipal.listaUsuarioMenu.get(i).getNome());
+        for (int i = 0; i < MenuPrincipal.listaUsuarioMenu.size(); i++) {
+            cbUsuarioDono.addItem(MenuPrincipal.listaUsuarioMenu.get(i).getNome());
+        }
+    }
+
+    public void carregaComboBoxAssinatura() {
+        cbAssinatura.removeAllItems();
+        cbAssinatura.addItem("Selecione");
+
+        for (int i = 0; i < MenuPrincipal.listaAssinaturaMenu.size(); i++) {
+            cbAssinatura.addItem(MenuPrincipal.listaAssinaturaMenu.get(i).getNome_assinatura());
         }
     }
 
@@ -312,21 +339,39 @@ public class TelasCanal extends JPanel {
 
         btnCriar.addActionListener(
             (event) -> {
-                if(_2MenuPrincipal.listaUsuarioMenu.size() < 1) {
+                if(MenuPrincipal.listaUsuarioMenu.size() < 1) {
                     JOptionPane.showMessageDialog(null, "É necessário pelo menos um usuário criado para criar um canal", "Atenção", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
-                    try {
-                        _2MenuPrincipal.listaCanalMenu.add(new _4Canal( textFieldNomeCanal.getText(), 
+                    if (cbAssinatura.getSelectedIndex() == 0) {
+                        try {
+                            MenuPrincipal.listaCanalMenu.add(new Canal( textFieldNomeCanal.getText(), 
                                                                         textFieldDt_Criacao.getText(), 
-                                                                        _2MenuPrincipal.listaUsuarioMenu.get(cbUsuarioDono.getSelectedIndex())));
-                        _2MenuPrincipal.painelPrincipal.removeAll();
-                        _2MenuPrincipal.painelPrincipal.revalidate();
-                        _2MenuPrincipal.painelPrincipal.repaint();
-                        _2MenuPrincipal.status.setText("Canal criado com sucesso!");
-                        
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Informações inválidas", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+                                                                        MenuPrincipal.listaUsuarioMenu.get(cbUsuarioDono.getSelectedIndex())));
+                            MenuPrincipal.painelPrincipal.removeAll();
+                            MenuPrincipal.painelPrincipal.revalidate();
+                            MenuPrincipal.painelPrincipal.repaint();
+                            MenuPrincipal.status.setText("Canal criado com sucesso!");
+                            
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, "Informações inválidas", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+                        }
+                    }
+                    else {
+                        try {
+                            MenuPrincipal.listaCanalMenu.add(new Canal( textFieldNomeCanal.getText(), 
+                                                                        textFieldDt_Criacao.getText(), 
+                                                                        MenuPrincipal.listaUsuarioMenu.get(cbUsuarioDono.getSelectedIndex()),
+                                                                        MenuPrincipal.listaAssinaturaMenu.get(cbAssinatura.getSelectedIndex() - 1)));
+                            MenuPrincipal.painelPrincipal.removeAll();
+                            MenuPrincipal.painelPrincipal.revalidate();
+                            MenuPrincipal.painelPrincipal.repaint();
+                            MenuPrincipal.status.setText("Canal criado com sucesso!");
+                            
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, "Informações inválidas", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+                        }
+
                     }
                 }
             }
@@ -336,19 +381,37 @@ public class TelasCanal extends JPanel {
             (event) -> {
                 int index = tbl.getSelectedRow();
 
-                if(index >= 0 && index < _2MenuPrincipal.listaCanalMenu.size()) {
-                    try {
-                        _2MenuPrincipal.listaCanalMenu.get(index).setNome_canal(textFieldNomeCanal.getText());
-                        _2MenuPrincipal.listaCanalMenu.get(index).setDt_criacao(textFieldDt_Criacao.getText());
-                        _2MenuPrincipal.listaCanalMenu.get(index).setUsuario_dono(_2MenuPrincipal.listaUsuarioMenu.get(cbUsuarioDono.getSelectedIndex()));
-                        
+                if(index >= 0 && index < MenuPrincipal.listaCanalMenu.size()) {
+                    if (cbAssinatura.getSelectedIndex() == 0) {
+                        try {
+                            MenuPrincipal.listaCanalMenu.get(index).setNome_canal(textFieldNomeCanal.getText());
+                            MenuPrincipal.listaCanalMenu.get(index).setDt_criacao(textFieldDt_Criacao.getText());
+                            MenuPrincipal.listaCanalMenu.get(index).setUsuario_dono(MenuPrincipal.listaUsuarioMenu.get(cbUsuarioDono.getSelectedIndex()));
+                            
+        
+                            telaEditarCanal();
+                            MenuPrincipal.status.setText("Canal salvo com sucesso!");
+                    
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, "Informações inválidas", "Atenção", JOptionPane.INFORMATION_MESSAGE);
     
-                        telaEditarCanal();
-                        _2MenuPrincipal.status.setText("Canal salvo com sucesso!");
-                
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Informações inválidas", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+                        }
 
+                    }
+                    else{
+                        try {
+                            MenuPrincipal.listaCanalMenu.get(index).setNome_canal(textFieldNomeCanal.getText());
+                            MenuPrincipal.listaCanalMenu.get(index).setDt_criacao(textFieldDt_Criacao.getText());
+                            MenuPrincipal.listaCanalMenu.get(index).setUsuario_dono(MenuPrincipal.listaUsuarioMenu.get(cbUsuarioDono.getSelectedIndex()));
+                            MenuPrincipal.listaCanalMenu.get(index).setAssinatura(MenuPrincipal.listaAssinaturaMenu.get(cbAssinatura.getSelectedIndex() - 1));
+        
+                            telaEditarCanal();
+                            MenuPrincipal.status.setText("Canal salvo com sucesso!");
+                    
+                        } catch (Exception e) {
+                            JOptionPane.showMessageDialog(null, "Informações inválidas", "Atenção", JOptionPane.INFORMATION_MESSAGE);
+    
+                        }
                     }
                 }
                 else {
@@ -361,16 +424,17 @@ public class TelasCanal extends JPanel {
             (event) -> {
                 int index = tbl.getSelectedRow();
 
-                if(index >= 0 && index < _2MenuPrincipal.listaCanalMenu.size()) {
-                    _4Canal C = _2MenuPrincipal.listaCanalMenu.get(index);
+                if(index >= 0 && index < MenuPrincipal.listaCanalMenu.size()) {
+                    Canal C = MenuPrincipal.listaCanalMenu.get(index);
 
                     textFieldId.setText(String.valueOf(C.getId_canal()));
                     textFieldNomeCanal.setText(C.getNome_canal());
                     textFieldDt_Criacao.setText(C.getDt_criacao());
                     cbUsuarioDono.setSelectedItem(C.getUsuario_dono().getNome());
+                    cbAssinatura.setSelectedItem(C.getAssinatura().getNome_assinatura());
 
 
-                    _2MenuPrincipal.status.setText("Editando Canal...");
+                    MenuPrincipal.status.setText("Editando Canal...");
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Selecione um canal", "Atenção", JOptionPane.INFORMATION_MESSAGE);
@@ -382,10 +446,10 @@ public class TelasCanal extends JPanel {
             (event) -> {
                 int index = tbl.getSelectedRow();
 
-                if(index >= 0 && index < _2MenuPrincipal.listaCanalMenu.size()) {
-                    _2MenuPrincipal.listaCanalMenu.remove(index);
+                if(index >= 0 && index < MenuPrincipal.listaCanalMenu.size()) {
+                    MenuPrincipal.listaCanalMenu.remove(index);
                     telaApagarCanal();
-                    _2MenuPrincipal.status.setText("Canal deletado com sucesso!");
+                    MenuPrincipal.status.setText("Canal deletado com sucesso!");
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Selecione um canal", "Atenção", JOptionPane.INFORMATION_MESSAGE);

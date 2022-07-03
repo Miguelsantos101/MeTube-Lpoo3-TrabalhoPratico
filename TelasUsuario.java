@@ -118,33 +118,32 @@ public class TelasUsuario extends JPanel{
         // Tela: Criar usuário
 
         // Título
-        labelTitulo.setText("Criar usuário");
+        labelTitulo.setText("Criar Usuário");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setAlignmentX(CENTER_ALIGNMENT);
+        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Formulários
         labelNome.setText("Digite o nome do usuário:");
-        labelNome.setAlignmentX(CENTER_ALIGNMENT);
+
 
         textFieldNome.setColumns(20);
         textFieldNome.setText(null);
-        textFieldNome.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         labelDt_Nasc.setText("Digite a data de nascimento:");
-        labelDt_Nasc.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         textFieldDt_Nasc.setColumns(20);
         textFieldDt_Nasc.setText(null);
-        textFieldDt_Nasc.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         // Botões
         btnCriar.setText("Criar novo usuário");
         btnCriar.setBackground(Color.GREEN);
-        btnCriar.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         // Adicionando componentes
         painelCriaUsuario.setLayout(new BoxLayout(painelCriaUsuario, BoxLayout.Y_AXIS));
-        painelCriaUsuario.setSize(500, 500);
         painelCriaUsuario.add(labelTitulo);
         painelCriaUsuario.add(labelNome);
         painelCriaUsuario.add(textFieldNome);
@@ -162,7 +161,7 @@ public class TelasUsuario extends JPanel{
         // Título
         labelTitulo.setText("Lista de usuários");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        
 
         // Tabela
         carregaTabelaListaUsuario();
@@ -185,7 +184,7 @@ public class TelasUsuario extends JPanel{
         // Título
         labelTitulo.setText("Editar usuários");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        
 
         // Formulários
         labelId.setText("ID do usuário");
@@ -232,7 +231,7 @@ public class TelasUsuario extends JPanel{
         painelEditaUsuario.add(scrollPane, BorderLayout.CENTER);
         painelBotoes.add(btnSalvar);
         painelBotoes.add(btnEditar);
-        painelEditaUsuario.add(painelBotoes, BorderLayout.SOUTH);
+        painelEditaUsuario.add(painelBotoes, BorderLayout.EAST);
 
         return painelEditaUsuario;
     }
@@ -244,7 +243,7 @@ public class TelasUsuario extends JPanel{
         // Título
         labelTitulo.setText("Apagar usuários");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        
 
         // Tabela
         carregaTabelaListaUsuario();
@@ -268,10 +267,10 @@ public class TelasUsuario extends JPanel{
     public void carregaTabelaListaUsuario() {
         DefaultTableModel modelo = new DefaultTableModel( new Object[]{"ID do usuário", "Nome", "Data de Nascimento"}, 0);
         
-        for (int i = 0; i < _2MenuPrincipal.listaUsuarioMenu.size(); i++) {
-            Object linha[] = new Object[]{  _2MenuPrincipal.listaUsuarioMenu.get(i).getId_usuario(),
-                                            _2MenuPrincipal.listaUsuarioMenu.get(i).getNome(),
-                                            _2MenuPrincipal.listaUsuarioMenu.get(i).getDt_nascimento()};
+        for (int i = 0; i < MenuPrincipal.listaUsuarioMenu.size(); i++) {
+            Object linha[] = new Object[]{  MenuPrincipal.listaUsuarioMenu.get(i).getId_usuario(),
+                                            MenuPrincipal.listaUsuarioMenu.get(i).getNome(),
+                                            MenuPrincipal.listaUsuarioMenu.get(i).getDt_nascimento()};
             modelo.addRow(linha);
         }
         tbl.setModel(modelo);
@@ -284,12 +283,12 @@ public class TelasUsuario extends JPanel{
         btnCriar.addActionListener(
             (event) -> {
                 try {
-                    _2MenuPrincipal.listaUsuarioMenu.add(new _3Usuario( textFieldNome.getText(), 
+                    MenuPrincipal.listaUsuarioMenu.add(new Usuario( textFieldNome.getText(), 
                                                                         textFieldDt_Nasc.getText()));
-                    _2MenuPrincipal.painelPrincipal.removeAll();
-                    _2MenuPrincipal.painelPrincipal.revalidate();
-                    _2MenuPrincipal.painelPrincipal.repaint();
-                    _2MenuPrincipal.status.setText("Usuário criado com sucesso!");
+                    MenuPrincipal.painelPrincipal.removeAll();
+                    MenuPrincipal.painelPrincipal.revalidate();
+                    MenuPrincipal.painelPrincipal.repaint();
+                    MenuPrincipal.status.setText("Usuário criado com sucesso!");
                     
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Informações inválidas", "Atenção", JOptionPane.INFORMATION_MESSAGE);
@@ -302,13 +301,13 @@ public class TelasUsuario extends JPanel{
             (event) -> {
                 int index = tbl.getSelectedRow();
 
-                if(index >= 0 && index < _2MenuPrincipal.listaUsuarioMenu.size()) {
+                if(index >= 0 && index < MenuPrincipal.listaUsuarioMenu.size()) {
                     try {
-                        _2MenuPrincipal.listaUsuarioMenu.get(index).setNome(textFieldNome.getText());
-                        _2MenuPrincipal.listaUsuarioMenu.get(index).setDt_nascimento(textFieldDt_Nasc.getText());
+                        MenuPrincipal.listaUsuarioMenu.get(index).setNome(textFieldNome.getText());
+                        MenuPrincipal.listaUsuarioMenu.get(index).setDt_nascimento(textFieldDt_Nasc.getText());
     
                         telaEditarUsuario();
-                        _2MenuPrincipal.status.setText("Usuário salvo com sucesso!");
+                        MenuPrincipal.status.setText("Usuário salvo com sucesso!");
                         
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Informações inválidas", "Atenção", JOptionPane.INFORMATION_MESSAGE);
@@ -325,14 +324,14 @@ public class TelasUsuario extends JPanel{
             (event) -> {
                 int index = tbl.getSelectedRow();
 
-                if(index >= 0 && index < _2MenuPrincipal.listaUsuarioMenu.size()) {
-                    _3Usuario U = _2MenuPrincipal.listaUsuarioMenu.get(index);
+                if(index >= 0 && index < MenuPrincipal.listaUsuarioMenu.size()) {
+                    Usuario U = MenuPrincipal.listaUsuarioMenu.get(index);
 
                     textFieldId.setText(String.valueOf(U.getId_usuario()));
                     textFieldNome.setText(U.getNome());
                     textFieldDt_Nasc.setText(U.getDt_nascimento());
 
-                    _2MenuPrincipal.status.setText("Editando usuário...");
+                    MenuPrincipal.status.setText("Editando usuário...");
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Selecione um usuário", "Atenção", JOptionPane.INFORMATION_MESSAGE);
@@ -344,10 +343,10 @@ public class TelasUsuario extends JPanel{
             (event) -> {
                 int index = tbl.getSelectedRow();
 
-                if(index >= 0 && index < _2MenuPrincipal.listaUsuarioMenu.size()) {
-                    _2MenuPrincipal.listaUsuarioMenu.remove(index);
+                if(index >= 0 && index < MenuPrincipal.listaUsuarioMenu.size()) {
+                    MenuPrincipal.listaUsuarioMenu.remove(index);
                     telaApagarUsuario();
-                    _2MenuPrincipal.status.setText("Usuário deletado com sucesso!");
+                    MenuPrincipal.status.setText("Usuário deletado com sucesso!");
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Selecione um usuário", "Atenção", JOptionPane.INFORMATION_MESSAGE);

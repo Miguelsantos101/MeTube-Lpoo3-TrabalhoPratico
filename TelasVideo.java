@@ -130,43 +130,42 @@ public class TelasVideo extends JPanel {
         // Título
         labelTitulo.setText("Criar Vídeo");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setAlignmentX(CENTER_ALIGNMENT);
+        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Formulários
         labelTituloVideo.setText("Digite o título do vídeo:");
-        labelTituloVideo.setAlignmentX(CENTER_ALIGNMENT);
+
 
         textFieldTituloVideo.setColumns(20);
         textFieldTituloVideo.setText(null);
-        textFieldTituloVideo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         labelDt_Lancamento.setText("Digite a data de lançamento do vídeo:");
-        labelDt_Lancamento.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         textFieldDt_Lancamento.setColumns(20);
         textFieldDt_Lancamento.setText(null);
-        textFieldDt_Lancamento.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         labelQtd_likes.setText("Digite a quantidade likes no vídeo:");
-        labelQtd_likes.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         textFieldQtd_likes.setColumns(20);
         textFieldQtd_likes.setText(null);
-        textFieldQtd_likes.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         labelCbCanalDono.setText("Escolha o dono do vídeo:");
-        labelCbCanalDono.setAlignmentX(CENTER_ALIGNMENT);
+
 
         carregaComboBoxCanalDono();
 
         // Botões
         btnCriar.setText("Criar novo Vídeo");
         btnCriar.setBackground(Color.GREEN);
-        btnCriar.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         // Adicionando componentes
         painelCriaVideo.setLayout(new BoxLayout(painelCriaVideo, BoxLayout.Y_AXIS));
-        painelCriaVideo.setSize(500, 500);
         painelCriaVideo.add(labelTitulo);
         painelCriaVideo.add(labelTituloVideo);
         painelCriaVideo.add(textFieldTituloVideo);
@@ -188,7 +187,7 @@ public class TelasVideo extends JPanel {
         // Título
         labelTitulo.setText("Lista de Vídeos");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        
 
         // Tabela
         carregaTabela();
@@ -211,7 +210,7 @@ public class TelasVideo extends JPanel {
         // Título
         labelTitulo.setText("Editar Vídeo");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        
 
         // Formulários
         labelId.setText("ID do Vídeo");
@@ -281,7 +280,7 @@ public class TelasVideo extends JPanel {
         // Título
         labelTitulo.setText("Apagar Vídeo");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        
 
         // Tabela
         carregaTabela();
@@ -305,12 +304,12 @@ public class TelasVideo extends JPanel {
     public void carregaTabela() {
         DefaultTableModel modelo = new DefaultTableModel( new Object[]{"ID do Vídeo", "Título", "Data de lançamento", "Likes", "Dono do vídeo"}, 0);
         
-        for (int i = 0; i < _2MenuPrincipal.listaVideoMenu.size(); i++) {
-            Object linha[] = new Object[]{  _2MenuPrincipal.listaVideoMenu.get(i).getId_video(),
-                                            _2MenuPrincipal.listaVideoMenu.get(i).getTitulo_video(),
-                                            _2MenuPrincipal.listaVideoMenu.get(i).getDt_lancamento(),
-                                            _2MenuPrincipal.listaVideoMenu.get(i).getQtd_likes(),
-                                            _2MenuPrincipal.listaVideoMenu.get(i).getCanal_dono().getNome_canal()};
+        for (int i = 0; i < MenuPrincipal.listaVideoMenu.size(); i++) {
+            Object linha[] = new Object[]{  MenuPrincipal.listaVideoMenu.get(i).getId_video(),
+                                            MenuPrincipal.listaVideoMenu.get(i).getTitulo_video(),
+                                            MenuPrincipal.listaVideoMenu.get(i).getDt_lancamento(),
+                                            MenuPrincipal.listaVideoMenu.get(i).getQtd_likes(),
+                                            MenuPrincipal.listaVideoMenu.get(i).getCanal_dono().getNome_canal()};
             modelo.addRow(linha);
         }
         tbl.setModel(modelo);
@@ -320,8 +319,8 @@ public class TelasVideo extends JPanel {
     public void carregaComboBoxCanalDono() {
         cbCanalDono.removeAllItems();
 
-        for (int i = 0; i < _2MenuPrincipal.listaCanalMenu.size(); i++) {
-            cbCanalDono.addItem(_2MenuPrincipal.listaCanalMenu.get(i).getNome_canal());
+        for (int i = 0; i < MenuPrincipal.listaCanalMenu.size(); i++) {
+            cbCanalDono.addItem(MenuPrincipal.listaCanalMenu.get(i).getNome_canal());
         }
     }
 
@@ -329,19 +328,19 @@ public class TelasVideo extends JPanel {
 
         btnCriar.addActionListener(
             (event) -> {
-                if(_2MenuPrincipal.listaCanalMenu.size() < 1) {
+                if(MenuPrincipal.listaCanalMenu.size() < 1) {
                     JOptionPane.showMessageDialog(null, "É necessário pelo menos um canal criado para criar um vídeo", "Atenção", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
                     try {
-                        _2MenuPrincipal.listaVideoMenu.add(new _5Video( textFieldTituloVideo.getText(), 
+                        MenuPrincipal.listaVideoMenu.add(new Video( textFieldTituloVideo.getText(), 
                                                                         textFieldDt_Lancamento.getText(), 
                                                                         Integer.parseInt(textFieldQtd_likes.getText()), 
-                                                                        _2MenuPrincipal.listaCanalMenu.get(cbCanalDono.getSelectedIndex())));
-                        _2MenuPrincipal.painelPrincipal.removeAll();
-                        _2MenuPrincipal.painelPrincipal.revalidate();
-                        _2MenuPrincipal.painelPrincipal.repaint();
-                        _2MenuPrincipal.status.setText("Video criado com sucesso!");
+                                                                        MenuPrincipal.listaCanalMenu.get(cbCanalDono.getSelectedIndex())));
+                        MenuPrincipal.painelPrincipal.removeAll();
+                        MenuPrincipal.painelPrincipal.revalidate();
+                        MenuPrincipal.painelPrincipal.repaint();
+                        MenuPrincipal.status.setText("Video criado com sucesso!");
 
                     } catch (Exception e) {
 
@@ -356,18 +355,18 @@ public class TelasVideo extends JPanel {
             (event) -> {
                 int index = tbl.getSelectedRow();
 
-                if(index >= 0 && index < _2MenuPrincipal.listaVideoMenu.size()) {
+                if(index >= 0 && index < MenuPrincipal.listaVideoMenu.size()) {
                     try {
-                        _2MenuPrincipal.listaVideoMenu.get(index).setTitulo_video(textFieldTituloVideo.getText());
-                        _2MenuPrincipal.listaVideoMenu.get(index).setDt_lancamento(textFieldDt_Lancamento.getText());
-                        _2MenuPrincipal.listaVideoMenu.get(index).setQtd_likes(Integer.parseInt(textFieldQtd_likes.getText()));
-                        _2MenuPrincipal.listaVideoMenu.get(index).setCanal_dono(_2MenuPrincipal.listaCanalMenu.get(cbCanalDono.getSelectedIndex()));
+                        MenuPrincipal.listaVideoMenu.get(index).setTitulo_video(textFieldTituloVideo.getText());
+                        MenuPrincipal.listaVideoMenu.get(index).setDt_lancamento(textFieldDt_Lancamento.getText());
+                        MenuPrincipal.listaVideoMenu.get(index).setQtd_likes(Integer.parseInt(textFieldQtd_likes.getText()));
+                        MenuPrincipal.listaVideoMenu.get(index).setCanal_dono(MenuPrincipal.listaCanalMenu.get(cbCanalDono.getSelectedIndex()));
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Informações inválidas", "Atenção", JOptionPane.INFORMATION_MESSAGE);
                     }
 
                     telaEditarVideo();
-                    _2MenuPrincipal.status.setText("Video salvo com sucesso!");
+                    MenuPrincipal.status.setText("Video salvo com sucesso!");
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Selecione um Video", "Atenção", JOptionPane.INFORMATION_MESSAGE);
@@ -379,8 +378,8 @@ public class TelasVideo extends JPanel {
             (event) -> {
                 int index = tbl.getSelectedRow();
 
-                if(index >= 0 && index < _2MenuPrincipal.listaVideoMenu.size()) {
-                    _5Video V = _2MenuPrincipal.listaVideoMenu.get(index);
+                if(index >= 0 && index < MenuPrincipal.listaVideoMenu.size()) {
+                    Video V = MenuPrincipal.listaVideoMenu.get(index);
 
                     textFieldId.setText(String.valueOf(V.getId_video()));
                     textFieldTituloVideo.setText(V.getTitulo_video());
@@ -388,7 +387,7 @@ public class TelasVideo extends JPanel {
                     textFieldQtd_likes.setText(String.valueOf(V.getQtd_likes()));
                     cbCanalDono.setSelectedItem(V.getCanal_dono().getNome_canal());
 
-                    _2MenuPrincipal.status.setText("Editando Video...");
+                    MenuPrincipal.status.setText("Editando Video...");
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Selecione um vídeo", "Atenção", JOptionPane.INFORMATION_MESSAGE);
@@ -400,10 +399,10 @@ public class TelasVideo extends JPanel {
             (event) -> {
                 int index = tbl.getSelectedRow();
 
-                if(index >= 0 && index < _2MenuPrincipal.listaVideoMenu.size()) {
-                    _2MenuPrincipal.listaVideoMenu.remove(index);
+                if(index >= 0 && index < MenuPrincipal.listaVideoMenu.size()) {
+                    MenuPrincipal.listaVideoMenu.remove(index);
                     telaApagarVideo();
-                    _2MenuPrincipal.status.setText("Video deletado com sucesso!");
+                    MenuPrincipal.status.setText("Video deletado com sucesso!");
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Selecione um vídeo", "Atenção", JOptionPane.INFORMATION_MESSAGE);

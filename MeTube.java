@@ -1,6 +1,6 @@
-public class _1MeTube{
+public class MeTube{
     
     public static void main(String[] args) {
-        new _2MenuPrincipal();
+        new MenuPrincipal();
     }
 }

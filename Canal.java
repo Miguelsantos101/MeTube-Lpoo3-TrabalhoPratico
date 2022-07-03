@@ -1,18 +1,28 @@
-public class _4Canal {
+public class Canal {
     private static int id_canais = 0;
     private int id_canal;
     private String nome_canal;
     private String dt_criacao;
-    private _3Usuario usuario_dono;
+    private Usuario usuario_dono;
+    private Assinatura assinatura;
     
-    public _4Canal(String nome_canal, String dt_criacao, _3Usuario usuario_dono) {
+    public Canal(String nome_canal, String dt_criacao, Usuario usuario_dono) {
         setId_canal(++id_canais);
         setNome_canal(nome_canal);
         setDt_criacao(dt_criacao);
         setUsuario_dono(usuario_dono);
+        setAssinatura( assinatura = new Assinatura("", 0));
+        
     }
 
-    
+    public Canal(String nome_canal, String dt_criacao, Usuario usuario_dono, Assinatura assinatura) {
+        setId_canal(++id_canais);
+        setNome_canal(nome_canal);
+        setDt_criacao(dt_criacao);
+        setUsuario_dono(usuario_dono);
+        setAssinatura(assinatura);
+    }
+
     // Setters e Getters
 
     //#region id_canal
@@ -46,12 +56,22 @@ public class _4Canal {
     //#endregion
 
     //#region usuario_dono
-    protected void setUsuario_dono(_3Usuario usuario_dono) {
+    protected void setUsuario_dono(Usuario usuario_dono) {
         this.usuario_dono = usuario_dono;
     }
 
-    public _3Usuario getUsuario_dono() {
+    public Usuario getUsuario_dono() {
         return usuario_dono;
+    }
+    //#endregion
+
+    //#region assinatura
+    public void setAssinatura(Assinatura assinatura) {
+        this.assinatura = assinatura;
+    }
+
+    public Assinatura getAssinatura() {
+        return assinatura;
     }
     //#endregion
 

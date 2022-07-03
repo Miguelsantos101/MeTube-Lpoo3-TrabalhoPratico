@@ -130,41 +130,40 @@ public class TelasComentario extends JPanel {
         // Título
         labelTitulo.setText("Criar Comentário");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setAlignmentX(CENTER_ALIGNMENT);
+        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Formulários
         labelTextoComentario.setText("Digite o texto do comentário:");
-        labelTextoComentario.setAlignmentX(CENTER_ALIGNMENT);
+
 
         textFieldTextoComentario.setColumns(20);
         textFieldTextoComentario.setText(null);
-        textFieldTextoComentario.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         labelQtd_likes.setText("Digite a quantidade likes no comentário:");
-        labelQtd_likes.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         textFieldQtd_likes.setColumns(20);
         textFieldQtd_likes.setText(null);
-        textFieldQtd_likes.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         labelCbUsuarioDono.setText("Escolha o usuário que vai comentar:");
-        labelCbUsuarioDono.setAlignmentX(CENTER_ALIGNMENT);
+
 
         carregaComboBoxUsuarioDono();
 
         labelCbVideoDono.setText("Escolha o vídeo para comentar:");
-        labelCbVideoDono.setAlignmentX(CENTER_ALIGNMENT);
+
 
         carregaComboBoxVideoDono();
 
         // Botões
         btnCriar.setText("Criar novo Comentário");
         btnCriar.setBackground(Color.GREEN);
-        btnCriar.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 
         // Adicionando componentes
         painelCriaComentario.setLayout(new BoxLayout(painelCriaComentario, BoxLayout.Y_AXIS));
-        painelCriaComentario.setSize(500, 500);
         painelCriaComentario.add(labelTitulo);
         painelCriaComentario.add(labelTextoComentario);
         painelCriaComentario.add(textFieldTextoComentario);
@@ -186,7 +185,7 @@ public class TelasComentario extends JPanel {
         // Título
         labelTitulo.setText("Lista de Comentários");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+
 
         // Tabela
         carregaTabela();
@@ -209,7 +208,7 @@ public class TelasComentario extends JPanel {
         // Título
         labelTitulo.setText("Editar Comentário");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+
 
         // Formulários
         labelId.setText("ID do Comentário");
@@ -276,7 +275,7 @@ public class TelasComentario extends JPanel {
         // Título
         labelTitulo.setText("Apagar Comentário");
         labelTitulo.setFont(new Font("SansSerif", Font.BOLD, 36));
-        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+
 
         // Tabela
         carregaTabela();
@@ -300,12 +299,12 @@ public class TelasComentario extends JPanel {
     public void carregaTabela() {
         DefaultTableModel modelo = new DefaultTableModel( new Object[]{"ID do Comentário", "Texto", "Likes", "Dono do comentário", "Vídeo comentado"}, 0);
         
-        for (int i = 0; i < _2MenuPrincipal.listaComentarioMenu.size(); i++) {
-            Object linha[] = new Object[]{  _2MenuPrincipal.listaComentarioMenu.get(i).getId_comentario(),
-                                            _2MenuPrincipal.listaComentarioMenu.get(i).getTexto_comentario(),
-                                            _2MenuPrincipal.listaComentarioMenu.get(i).getQtd_likes(),
-                                            _2MenuPrincipal.listaComentarioMenu.get(i).getUsuario_dono().getNome(),
-                                            _2MenuPrincipal.listaComentarioMenu.get(i).getVideo_dono().getTitulo_video()};
+        for (int i = 0; i < MenuPrincipal.listaComentarioMenu.size(); i++) {
+            Object linha[] = new Object[]{  MenuPrincipal.listaComentarioMenu.get(i).getId_comentario(),
+                                            MenuPrincipal.listaComentarioMenu.get(i).getTexto_comentario(),
+                                            MenuPrincipal.listaComentarioMenu.get(i).getQtd_likes(),
+                                            MenuPrincipal.listaComentarioMenu.get(i).getUsuario_dono().getNome(),
+                                            MenuPrincipal.listaComentarioMenu.get(i).getVideo_dono().getTitulo_video()};
             modelo.addRow(linha);
         }
         tbl.setModel(modelo);
@@ -315,16 +314,16 @@ public class TelasComentario extends JPanel {
     public void carregaComboBoxUsuarioDono() {
         cbUsuarioDono.removeAllItems();
 
-        for (int i = 0; i < _2MenuPrincipal.listaUsuarioMenu.size(); i++) {
-            cbUsuarioDono.addItem(_2MenuPrincipal.listaUsuarioMenu.get(i).getNome());
+        for (int i = 0; i < MenuPrincipal.listaUsuarioMenu.size(); i++) {
+            cbUsuarioDono.addItem(MenuPrincipal.listaUsuarioMenu.get(i).getNome());
         }
     }
 
     public void carregaComboBoxVideoDono() {
         cbVideoDono.removeAllItems();
 
-        for (int i = 0; i < _2MenuPrincipal.listaVideoMenu.size(); i++) {
-            cbVideoDono.addItem(_2MenuPrincipal.listaVideoMenu.get(i).getTitulo_video());
+        for (int i = 0; i < MenuPrincipal.listaVideoMenu.size(); i++) {
+            cbVideoDono.addItem(MenuPrincipal.listaVideoMenu.get(i).getTitulo_video());
         }
     }
 
@@ -332,19 +331,19 @@ public class TelasComentario extends JPanel {
 
         btnCriar.addActionListener(
             (event) -> {
-                if(_2MenuPrincipal.listaCanalMenu.size() < 1) {
+                if(MenuPrincipal.listaCanalMenu.size() < 1) {
                     JOptionPane.showMessageDialog(null, "É necessário pelo menos um usuário e um vídeo criado para criar um comentário", "Atenção", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{
                     try {
-                        _2MenuPrincipal.listaComentarioMenu.add(new _6Comentario(   textFieldTextoComentario.getText(), 
+                        MenuPrincipal.listaComentarioMenu.add(new Comentario(   textFieldTextoComentario.getText(), 
                                                                                     Integer.parseInt(textFieldQtd_likes.getText()), 
-                                                                                    _2MenuPrincipal.listaUsuarioMenu.get(cbUsuarioDono.getSelectedIndex()),
-                                                                                    _2MenuPrincipal.listaVideoMenu.get(cbVideoDono.getSelectedIndex())));
-                        _2MenuPrincipal.painelPrincipal.removeAll();
-                        _2MenuPrincipal.painelPrincipal.revalidate();
-                        _2MenuPrincipal.painelPrincipal.repaint();
-                        _2MenuPrincipal.status.setText("Comentario criado com sucesso!");
+                                                                                    MenuPrincipal.listaUsuarioMenu.get(cbUsuarioDono.getSelectedIndex()),
+                                                                                    MenuPrincipal.listaVideoMenu.get(cbVideoDono.getSelectedIndex())));
+                        MenuPrincipal.painelPrincipal.removeAll();
+                        MenuPrincipal.painelPrincipal.revalidate();
+                        MenuPrincipal.painelPrincipal.repaint();
+                        MenuPrincipal.status.setText("Comentario criado com sucesso!");
 
                     } catch (Exception e) {
 
@@ -359,18 +358,18 @@ public class TelasComentario extends JPanel {
             (event) -> {
                 int index = tbl.getSelectedRow();
 
-                if(index >= 0 && index < _2MenuPrincipal.listaComentarioMenu.size()) {
+                if(index >= 0 && index < MenuPrincipal.listaComentarioMenu.size()) {
                     try {
-                        _2MenuPrincipal.listaComentarioMenu.get(index).setTexto_comentario(textFieldTextoComentario.getText());
-                        _2MenuPrincipal.listaComentarioMenu.get(index).setQtd_likes(Integer.parseInt(textFieldQtd_likes.getText()));
-                        _2MenuPrincipal.listaComentarioMenu.get(index).setUsuario_dono(_2MenuPrincipal.listaUsuarioMenu.get(cbUsuarioDono.getSelectedIndex()));
-                        _2MenuPrincipal.listaComentarioMenu.get(index).setVideo_dono(_2MenuPrincipal.listaVideoMenu.get(cbVideoDono.getSelectedIndex()));
+                        MenuPrincipal.listaComentarioMenu.get(index).setTexto_comentario(textFieldTextoComentario.getText());
+                        MenuPrincipal.listaComentarioMenu.get(index).setQtd_likes(Integer.parseInt(textFieldQtd_likes.getText()));
+                        MenuPrincipal.listaComentarioMenu.get(index).setUsuario_dono(MenuPrincipal.listaUsuarioMenu.get(cbUsuarioDono.getSelectedIndex()));
+                        MenuPrincipal.listaComentarioMenu.get(index).setVideo_dono(MenuPrincipal.listaVideoMenu.get(cbVideoDono.getSelectedIndex()));
                     } catch (Exception e) {
                         JOptionPane.showMessageDialog(null, "Informações inválidas", "Atenção", JOptionPane.INFORMATION_MESSAGE);
                     }
 
                     telaEditarComentario();
-                    _2MenuPrincipal.status.setText("Comentario salvo com sucesso!");
+                    MenuPrincipal.status.setText("Comentario salvo com sucesso!");
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Selecione um Comentario", "Atenção", JOptionPane.INFORMATION_MESSAGE);
@@ -382,8 +381,8 @@ public class TelasComentario extends JPanel {
             (event) -> {
                 int index = tbl.getSelectedRow();
 
-                if(index >= 0 && index < _2MenuPrincipal.listaComentarioMenu.size()) {
-                    _6Comentario C = _2MenuPrincipal.listaComentarioMenu.get(index);
+                if(index >= 0 && index < MenuPrincipal.listaComentarioMenu.size()) {
+                    Comentario C = MenuPrincipal.listaComentarioMenu.get(index);
 
                     textFieldId.setText(String.valueOf(C.getId_comentario()));
                     textFieldTextoComentario.setText(C.getTexto_comentario());
@@ -391,7 +390,7 @@ public class TelasComentario extends JPanel {
                     cbUsuarioDono.setSelectedItem(C.getUsuario_dono().getNome());
                     cbVideoDono.setSelectedItem(C.getVideo_dono().getTitulo_video());
 
-                    _2MenuPrincipal.status.setText("Editando Comentario...");
+                    MenuPrincipal.status.setText("Editando Comentario...");
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Selecione um comentário", "Atenção", JOptionPane.INFORMATION_MESSAGE);
@@ -403,10 +402,10 @@ public class TelasComentario extends JPanel {
             (event) -> {
                 int index = tbl.getSelectedRow();
 
-                if(index >= 0 && index < _2MenuPrincipal.listaComentarioMenu.size()) {
-                    _2MenuPrincipal.listaComentarioMenu.remove(index);
+                if(index >= 0 && index < MenuPrincipal.listaComentarioMenu.size()) {
+                    MenuPrincipal.listaComentarioMenu.remove(index);
                     telaApagarComentario();
-                    _2MenuPrincipal.status.setText("Comentario deletado com sucesso!");
+                    MenuPrincipal.status.setText("Comentario deletado com sucesso!");
                 }
                 else {
                     JOptionPane.showMessageDialog(null, "Selecione um comentário", "Atenção", JOptionPane.INFORMATION_MESSAGE);

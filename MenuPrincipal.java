@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class _2MenuPrincipal extends JFrame{
+public class MenuPrincipal extends JFrame{
 
     //#region Barra de Menus
     static JMenuBar menuBar;
@@ -83,25 +83,25 @@ public class _2MenuPrincipal extends JFrame{
     //#endregion
 
     //#region Listas
-    static ArrayList<_3Usuario> listaUsuarioMenu;
-    static ArrayList<_4Canal> listaCanalMenu;
-    static ArrayList<_5Video> listaVideoMenu;
-    static ArrayList<_6Comentario> listaComentarioMenu;
-    static ArrayList<_7Assinatura> listaAssinaturaMenu;
+    static ArrayList<Usuario> listaUsuarioMenu;
+    static ArrayList<Canal> listaCanalMenu;
+    static ArrayList<Video> listaVideoMenu;
+    static ArrayList<Comentario> listaComentarioMenu;
+    static ArrayList<Assinatura> listaAssinaturaMenu;
     //#endregion
 
     //#region Label de Status
     static JLabel status;
     //#endregion
 
-    public _2MenuPrincipal() {
+    public MenuPrincipal() {
         super("MeTube!");
 
-        listaUsuarioMenu = new ArrayList<_3Usuario>();
-        listaCanalMenu = new ArrayList<_4Canal>();
-        listaVideoMenu = new ArrayList<_5Video>();
-        listaComentarioMenu = new ArrayList<_6Comentario>();
-        listaAssinaturaMenu = new ArrayList<_7Assinatura>();
+        listaUsuarioMenu = new ArrayList<Usuario>();
+        listaCanalMenu = new ArrayList<Canal>();
+        listaVideoMenu = new ArrayList<Video>();
+        listaComentarioMenu = new ArrayList<Comentario>();
+        listaAssinaturaMenu = new ArrayList<Assinatura>();
 
         prepararJanela();
 
@@ -377,7 +377,45 @@ public class _2MenuPrincipal extends JFrame{
     }
 
     private void eventosMenuAssinatura() {
+        menuItemCriaAssinatura.addActionListener(
+            (event) -> {
+                painelPrincipal.removeAll();
+                painelPrincipal.add(telasAssinatura.telaCriarAssinatura());
+                this.revalidate();
+                this.repaint();
+                status.setText("Criando nova assinatura");
+            }
+        );
 
+        menuItemListaAssinatura.addActionListener(
+            (event) -> {
+                painelPrincipal.removeAll();
+                painelPrincipal.add(telasAssinatura.telaListarAssinatura());
+                this.revalidate();
+                this.repaint();
+                status.setText("Listando assinaturas");
+            }
+        );
+
+        menuItemEditaAssinatura.addActionListener(
+            (event) -> {
+                painelPrincipal.removeAll();
+                painelPrincipal.add(telasAssinatura.telaEditarAssinatura());
+                this.revalidate();
+                this.repaint();
+                status.setText("Editando assinatura");
+            }
+        );
+
+        menuItemApagaAssinatura.addActionListener(
+            (event) -> {
+                painelPrincipal.removeAll();
+                painelPrincipal.add(telasAssinatura.telaApagarAssinatura());
+                this.revalidate();
+                this.repaint();
+                status.setText("Apagando assinatura");
+            }
+        );
     }
 
 }

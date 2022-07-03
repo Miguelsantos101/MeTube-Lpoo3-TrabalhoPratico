@@ -1,10 +1,10 @@
-public class _3Usuario {
+public class Usuario {
     private static int id_usuarios = 0;
     private int id_usuario;
     private String nome_usuario;
     private String dt_nascimento;
 
-    public _3Usuario(String nome_usuario, String dt_nascimento) {
+    public Usuario(String nome_usuario, String dt_nascimento) {
         setId_usuario(++id_usuarios);
         setNome(nome_usuario);
         setDt_nascimento(dt_nascimento);

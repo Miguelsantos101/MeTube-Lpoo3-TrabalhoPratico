@@ -1,12 +1,12 @@
-public class _5Video {
+public class Video {
     private static int id_videos = 0;
     private int id_video;
     private String titulo_video;
     private String dt_lancamento;
     private int qtd_likes;
-    private _4Canal canal_dono;
+    private Canal canal_dono;
 
-    public _5Video(String titulo_video, String dt_lancamento, int qtd_likes, _4Canal canal_dono) {
+    public Video(String titulo_video, String dt_lancamento, int qtd_likes, Canal canal_dono) {
         setId_video(++id_videos);
         setTitulo_video(titulo_video);
         setDt_lancamento(dt_lancamento);
@@ -58,11 +58,11 @@ public class _5Video {
     //#endregion
 
     //#region canal_dono
-    public void setCanal_dono(_4Canal canal_dono) {
+    public void setCanal_dono(Canal canal_dono) {
         this.canal_dono = canal_dono;
     }
 
-    public _4Canal getCanal_dono() {
+    public Canal getCanal_dono() {
         return canal_dono;
     }
     //#endregion
